@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Appointment - Salon Booking{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .delete-container {
+        max-width: 600px;
+        width: 100%;
+        margin: 50px auto;
+    }
+
+    .delete-card {
+        background: white;
+        border: 3px solid #fc8181;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 8px 30px rgba(252, 129, 129, 0.3);
+        text-align: center;
+    }
+
+    .warning-icon {
+        font-size: 80px;
+        margin-bottom: 20px;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+
+    .delete-title {
+        color: #e53e3e;
+        font-size: 32px;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .warning-box {
+        background: #fff5f5;
+        border: 2px solid #fc8181;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 25px 0;
+        text-align: left;
+    }
+
+    .warning-box p {
+        color: #742a2a;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .warning-box p:last-child {
+        color: #c53030;
+        margin-bottom: 0;
+    }
+
+    .appointment-details {
+        background: linear-gradient(135deg, #fff5fa 0%, #ffffff 100%);
+        border: 2px solid #ffc1e3;
+        border-left: 4px solid #fc8181;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+        text-align: left;
+    }
+
+    .details-title {
+        color: #c2185b;
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .detail-row {
+        padding: 10px 0;
+        border-bottom: 1px solid #ffc1e3;
+        font-size: 15px;
+    }
+
+    .detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .detail-row strong {
+        color: #c2185b;
+        font-weight: 600;
+    }
+
+    .detail-row span {
+        color: #666;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .btn {
+        flex: 1;
+        padding: 16px 32px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        font-family: 'Georgia', serif;
+    }
+
+    .btn-delete {
+        background: linear-gradient(135deg, #fc8181 0%, #f56565 100%);
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(252, 129, 129, 0.4);
+    }
+
+    .btn-cancel {
+        background: #ffc1e3;
+        color: #c2185b;
+    }
+
+    .btn-cancel:hover {
+        background: #ffb6d9;
+        transform: translateY(-2px);
+    }
+
+    .info-note {
+        color: #888;
+        font-size: 14px;
+        margin-top: 20px;
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .delete-card {
+            padding: 25px;
+        }
+
+        .delete-title {
+            font-size: 24px;
+        }
+
+        .warning-icon {
+            font-size: 60px;
+        }
+
+        .button-group {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="delete-container">
+    <div class="delete-card">
+        <div class="warning-icon">⚠️</div>
+        
+        <h1 class="delete-title">Delete Appointment?</h1>
+        
+        <div class="warning-box">
+            <p>⚠️ Are you sure you want to delete this appointment?</p>
+            <p>This action cannot be undone.</p>
+        </div>
+        
+        <div class="appointment-details">
+            <h3 class="details-title">📋 Appointment Details</h3>
+            
+            <div class="detail-row">
+                <strong>✨ Service:</strong> <span>{{ appointment.service.name }}</span>
+            </div>
+            
+            <div class="detail-row">
+                <strong>📅 Date:</strong> <span>{{ appointment.preferred_date|date:"F d, Y" }}</span>
+            </div>
+            
+            <div class="detail-row">
+                <strong>🕐 Time:</strong> <span>{{ appointment.preferred_time|time:"g:i A" }}</span>
+            </div>
+            
+            <div class="detail-row">
+                <strong>⏱️ Duration:</strong> <span>{{ appointment.service.duration }} minutes</span>
+            </div>
+            
+            <div class="detail-row">
+                <strong>💰 Price:</strong> <span>₱{{ appointment.service.price }}</span>
+            </div>
+            
+            {% if appointment.notes %}
+            <div class="detail-row">
+                <strong>📝 Notes:</strong> <span>{{ appointment.notes }}</span>
+            </div>
+            {% endif %}
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="button-group">
+                <a href="{% url 'appointments:dashboard' %}" class="btn btn-cancel">
+                    ← Cancel
+                </a>
+                <button type="submit" class="btn btn-delete">
+                    🗑️ Yes, Delete It
+                </button>
+            </div>
+        </form>
+        
+        <p class="info-note">
+            💡 You can always book a new appointment later
+        </p>
+    </div>
+</div>
+{% endblock %}

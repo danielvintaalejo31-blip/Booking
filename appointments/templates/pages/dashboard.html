@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Beauty Salon - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-bg { 
+            background: linear-gradient(135deg, #d16b8f 0%, #b85a7a 100%);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #d16b8f 0%, #b85a7a 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .nav-link.active:after {
+            width: 100%;
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation Bar -->
+    <nav class="gradient-bg text-white fixed w-full top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="text-3xl">🌸</div>
+                    <span class="text-2xl font-bold heading-font">Natural Beauty</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" onclick="showPage('home'); return false;" class="nav-link active font-medium hover:text-pink-200">HOME</a>
+                    <a href="#" onclick="showPage('about'); return false;" class="nav-link font-medium hover:text-pink-200">ABOUT US</a>
+                    <a href="#" onclick="showPage('services'); return false;" class="nav-link font-medium hover:text-pink-200">SERVICES</a>
+                    <a href="#" onclick="showPage('packages'); return false;" class="nav-link font-medium hover:text-pink-200">PACKAGES</a>
+                    <a href="#" onclick="showPage('reservation'); return false;" class="nav-link font-medium hover:text-pink-200">RESERVATION</a>
+                    <a href="#" onclick="showPage('contact'); return false;" class="nav-link font-medium hover:text-pink-200">CONTACT US</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:block text-right">
+                        <p class="font-semibold">Guest</p>
+                        <p class="text-xs text-pink-100">450 Points</p>
+                    </div>
+                    <button class="bg-white text-pink-600 w-10 h-10 rounded-full flex items-center justify-center hover:bg-pink-50 transition-all">
+                        👤
+                    </button>
+                    <button onclick="handleLogout()" class="bg-white bg-opacity-20 text-white px-4 py-2 rounded-full font-semibold hover:bg-opacity-30 transition-all flex items-center space-x-2">
+                        <span>🚪</span>
+                        <span class="hidden md:inline">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page-section active">
+        <section class="hero-section min-h-screen flex items-center pt-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
+                <div class="flex items-center justify-center">
+                    <div class="text-white space-y-6 text-center">
+                        <h1 class="text-6xl md:text-7xl font-bold heading-font leading-tight">
+                            GET 30% OFF ON<br>COUPLE MASSAGE
+                        </h1>
+                        <p class="text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto">
+                            Experience ultimate relaxation with our premium couple massage service. 
+                            Book now and enjoy exclusive discounts on your favorite treatments.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT US PAGE -->
+    <div id="about" class="page-section">
+        <section class="py-20 bg-gradient-to-b from-pink-50 to-white" style="margin-top: 80px; min-height: 100vh;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Page Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold text-gray-800 heading-font mb-4">About Natural Beauty</h2>
+                    <div class="w-24 h-1 bg-pink-500 mx-auto mb-4"></div>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Where beauty meets excellence and every client leaves feeling confident and radiant</p>
+                </div>
+
+                <!-- Our Story -->
+                <div class="mb-20">
+                    <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border-2 border-pink-100">
+                        <div class="flex items-center mb-6">
+                            <span class="text-4xl mr-4">✨</span>
+                            <h3 class="text-3xl font-bold text-gray-800 heading-font">Our Story</h3>
+                        </div>
+                        <div class="text-gray-600 space-y-4 text-lg leading-relaxed">
+                            <p>Founded with a passion for enhancing natural beauty, Natural Beauty Salon has been serving the community with dedication and expertise. Our journey began with a simple belief: every person deserves to feel beautiful, confident, and pampered.</p>
+                            <p>What started as a small salon has blossomed into a sanctuary where artistry meets wellness. We've built our reputation on exceptional service, skilled professionals, and a warm, welcoming atmosphere that makes every visit special.</p>
+                            <p>Today, we continue to evolve with the latest trends and techniques while staying true to our core values of quality, integrity, and personalized care.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission & Vision -->
+                <div class="grid md:grid-cols-2 gap-8 mb-20">
+                    <div class="bg-gradient-to-br from-pink-500 to-pink-600 rounded-3xl shadow-xl p-8 text-white card-hover">
+                        <div class="text-5xl mb-4">🎯</div>
+                        <h3 class="text-2xl font-bold mb-4 heading-font">Our Mission</h3>
+                        <p class="text-pink-50 leading-relaxed">To provide exceptional beauty services that enhance our clients' natural features while delivering a luxurious, relaxing experience that leaves them feeling renewed and confident.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-3xl shadow-xl p-8 text-white card-hover">
+                        <div class="text-5xl mb-4">🌟</div>
+                        <h3 class="text-2xl font-bold mb-4 heading-font">Our Vision</h3>
+                        <p class="text-purple-50 leading-relaxed">To be the premier destination for beauty and wellness, recognized for our innovation, expertise, and commitment to making every client feel like the best version of themselves.</p>
+                    </div>
+                </div>
+
+                <!-- What Makes Us Special -->
+                <div class="mb-20">
+                    <div class="text-center mb-12">
+                        <h3 class="text-4xl font-bold text-gray-800 heading-font mb-4">What Makes Us Special</h3>
+                        <div class="w-24 h-1 bg-pink-500 mx-auto"></div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center border-2 border-pink-100 card-hover">
+                            <div class="text-5xl mb-4">👩‍🎨</div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Expert Professionals</h4>
+                            <p class="text-gray-600">Our team consists of certified and experienced beauty professionals who stay updated with the latest techniques and trends.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center border-2 border-pink-100 card-hover">
+                            <div class="text-5xl mb-4">💎</div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Premium Products</h4>
+                            <p class="text-gray-600">We use only high-quality, trusted beauty products that are safe, effective, and gentle on your skin and hair.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center border-2 border-pink-100 card-hover">
+                            <div class="text-5xl mb-4">🏆</div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Personalized Service</h4>
+                            <p class="text-gray-600">Every client is unique, and we tailor our services to meet your individual needs, preferences, and beauty goals.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center border-2 border-pink-100 card-hover">
+                            <div class="text-5xl mb-4">🧘‍♀️</div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Relaxing Atmosphere</h4>
+                            <p class="text-gray-600">Step into our tranquil salon where soothing ambiance and comfortable surroundings help you unwind and relax.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center border-2 border-pink-100 card-hover">
+                            <div class="text-5xl mb-4">⏰</div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Flexible Scheduling</h4>
+                            <p class="text-gray-600">We offer convenient appointment times to fit your busy schedule, including evenings and weekends.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center border-2 border-pink-100 card-hover">
+                            <div class="text-5xl mb-4">💝</div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Loyalty Rewards</h4>
+                            <p class="text-gray-600">Earn points with every visit and enjoy exclusive discounts, special offers, and birthday surprises.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Our Values -->
+                <div class="bg-gradient-to-r from-pink-100 to-purple-100 rounded-3xl shadow-xl p-8 md:p-12">
+                    <div class="text-center mb-10">
+                        <h3 class="text-4xl font-bold text-gray-800 heading-font mb-4">Our Core Values</h3>
+                        <div class="w-24 h-1 bg-pink-500 mx-auto"></div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white rounded-xl p-6 text-center shadow-md">
+                            <div class="text-4xl mb-3">💖</div>
+                            <h4 class="font-bold text-gray-800 mb-2">Excellence</h4>
+                            <p class="text-gray-600 text-sm">We strive for perfection in every service we provide</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 text-center shadow-md">
+                            <div class="text-4xl mb-3">🤝</div>
+                            <h4 class="font-bold text-gray-800 mb-2">Integrity</h4>
+                            <p class="text-gray-600 text-sm">Honesty and transparency guide all our interactions</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 text-center shadow-md">
+                            <div class="text-4xl mb-3">🌱</div>
+                            <h4 class="font-bold text-gray-800 mb-2">Innovation</h4>
+                            <p class="text-gray-600 text-sm">We embrace new techniques and stay ahead of trends</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 text-center shadow-md">
+                            <div class="text-4xl mb-3">🙏</div>
+                            <h4 class="font-bold text-gray-800 mb-2">Respect</h4>
+                            <p class="text-gray-600 text-sm">We value every client and team member equally</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-center mt-16">
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-4">Ready to Experience Natural Beauty?</h3>
+                    <p class="text-gray-600 mb-8 text-lg">Join our family of satisfied clients and discover the difference</p>
+                    <button onclick="showPage('reservation')" class="gradient-bg text-white px-10 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all inline-flex items-center space-x-2">
+                        <span>📅</span>
+                        <span>Book Your Appointment Today</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+     
+    <!-- SERVICES PAGE -->
+    <div id="services" class="page-section">
+        <section class="py-20 bg-white" style="margin-top: 80px; min-height: 100vh;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 heading-font mb-3">OUR SERVICES</h2>
+                    <div class="w-24 h-1 bg-pink-500 mx-auto mb-4"></div>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Discover our premium salon services</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Hair Services -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">💇‍♀️</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Classic Haircut</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Professional haircut with styling. Includes wash, cut, and blow dry.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱350</span>
+                                <span class="text-gray-500 text-sm">45 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🎨</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Hair Coloring</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Full hair color transformation with premium products.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱2,500</span>
+                                <span class="text-gray-500 text-sm">120 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">✨</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Balayage Highlights</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Natural-looking highlights with expert blending.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱3,500</span>
+                                <span class="text-gray-500 text-sm">150 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🌊</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Brazilian Blowout</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Smooth, frizz-free hair treatment that lasts for months.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱4,500</span>
+                                <span class="text-gray-500 text-sm">180 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">💆‍♀️</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Hair Spa Treatment</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Deep conditioning with scalp massage for healthy hair.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱800</span>
+                                <span class="text-gray-500 text-sm">60 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🔥</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Keratin Treatment</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Professional keratin smoothing for silky hair.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱5,000</span>
+                                <span class="text-gray-500 text-sm">180 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nail Services -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">💅</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Classic Manicure</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Traditional manicure with nail shaping and polish.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱300</span>
+                                <span class="text-gray-500 text-sm">45 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">💎</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Gel Manicure</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Long-lasting gel polish with LED curing.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱500</span>
+                                <span class="text-gray-500 text-sm">60 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🦶</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Classic Pedicure</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Relaxing foot treatment with exfoliation and massage.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱400</span>
+                                <span class="text-gray-500 text-sm">60 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">✨</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Gel Pedicure</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Luxury pedicure with gel polish. Includes foot spa.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱650</span>
+                                <span class="text-gray-500 text-sm">75 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🎨</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Nail Art Design</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Custom nail art from simple to intricate patterns.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱200</span>
+                                <span class="text-gray-500 text-sm">30 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Facial Services -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🧖‍♀️</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Classic Facial</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Deep cleansing facial with steam and moisturizing mask.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱800</span>
+                                <span class="text-gray-500 text-sm">60 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">💆</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Anti-Aging Facial</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Premium facial targeting fine lines with collagen boost.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱1,500</span>
+                                <span class="text-gray-500 text-sm">90 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🌟</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Brightening Facial</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Vitamin C infused facial for radiant, even-toned skin.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱1,200</span>
+                                <span class="text-gray-500 text-sm">75 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Makeup Services -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">💄</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Party Makeup</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Glamorous makeup perfect for special occasions.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱1,500</span>
+                                <span class="text-gray-500 text-sm">60 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">👰</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Bridal Makeup</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Professional bridal makeup with airbrush. Includes trial.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱5,000</span>
+                                <span class="text-gray-500 text-sm">120 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Waxing Services -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🪶</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Eyebrow Shaping</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Professional eyebrow threading or waxing.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱150</span>
+                                <span class="text-gray-500 text-sm">15 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">👄</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Upper Lip Waxing</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Quick and gentle upper lip hair removal.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱100</span>
+                                <span class="text-gray-500 text-sm">10 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🦵</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Full Leg Waxing</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Complete leg waxing for smooth, hair-free legs.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱800</span>
+                                <span class="text-gray-500 text-sm">45 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Massage Services -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">💆‍♀️</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Swedish Massage</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Relaxing full body massage to relieve tension.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱1,200</span>
+                                <span class="text-gray-500 text-sm">60 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🪨</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Hot Stone Massage</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Therapeutic massage using heated stones.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱1,800</span>
+                                <span class="text-gray-500 text-sm">90 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                        <div class="gradient-bg h-48 flex items-center justify-center text-8xl">🌿</div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Aromatherapy Massage</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Holistic massage with essential oils for relaxation.</p>
+                            <div class="flex items-center justify-between pt-4 border-t">
+                                <span class="text-3xl font-bold text-pink-600">₱1,500</span>
+                                <span class="text-gray-500 text-sm">75 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PACKAGES PAGE -->
+<div id="packages" class="page-section">
+    <section class="py-20 bg-gradient-to-b from-purple-50 to-white" style="margin-top: 80px; min-height: 100vh;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Page Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-800 heading-font mb-4">Special Packages</h2>
+                <div class="w-24 h-1 bg-pink-500 mx-auto mb-4"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Save more with our exclusive package deals! Combine your favorite services and enjoy amazing discounts</p>
+            </div>
+
+            <!-- Featured Package - Ultimate Relaxation -->
+            <div class="mb-16">
+                <div class="bg-gradient-to-r from-pink-500 to-purple-600 rounded-3xl shadow-2xl p-8 md:p-12 text-white overflow-hidden relative">
+                    <div class="absolute top-0 right-0 text-9xl opacity-10">💕</div>
+                    <div class="relative z-10">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm font-bold mr-3">⭐ FEATURED DEAL</span>
+                            <span class="bg-yellow-400 text-gray-900 px-4 py-2 rounded-full text-sm font-bold">SAVE 25%</span>
+                        </div>
+                        <h3 class="text-4xl md:text-5xl font-bold heading-font mb-4">Ultimate Relaxation Package</h3>
+                        <p class="text-xl text-pink-100 mb-6 max-w-2xl">Experience the perfect combination of massage and skincare for total rejuvenation</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-8 mb-8">
+                            <div>
+                                <h4 class="font-bold text-lg mb-4">Package Includes:</h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-2xl">💆‍♀️</span>
+                                        <div>
+                                            <span class="font-semibold">Swedish Massage (60 min)</span>
+                                            <p class="text-pink-100 text-sm">Full body relaxation massage</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-2xl">🪨</span>
+                                        <div>
+                                            <span class="font-semibold">Hot Stone Massage (90 min)</span>
+                                            <p class="text-pink-100 text-sm">Therapeutic heated stone therapy</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-2xl">🧖‍♀️</span>
+                                        <div>
+                                            <span class="font-semibold">Classic Facial (60 min)</span>
+                                            <p class="text-pink-100 text-sm">Deep cleansing with steam</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-2xl">🍵</span>
+                                        <div>
+                                            <span class="font-semibold">Complimentary Refreshments</span>
+                                            <p class="text-pink-100 text-sm">Herbal tea and light snacks</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-white bg-opacity-10 rounded-2xl p-6 backdrop-blur-sm">
+                                <div class="text-center mb-4">
+                                    <p class="text-pink-100 text-lg mb-2">Regular Price</p>
+                                    <p class="text-3xl line-through opacity-75">₱3,800</p>
+                                    <p class="text-sm text-pink-100 mt-1">(₱1,200 + ₱1,800 + ₱800)</p>
+                                </div>
+                                <div class="text-center border-t border-white border-opacity-20 pt-4">
+                                    <p class="text-pink-100 text-lg mb-2">Package Price</p>
+                                    <p class="text-6xl font-bold">₱2,850</p>
+                                    <p class="text-pink-100 mt-2">You save ₱950!</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="showPage('reservation')" class="bg-white text-pink-600 px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all inline-flex items-center space-x-2">
+                            <span>💝</span>
+                            <span>Book This Package Now</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular Packages Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Total Beauty Makeover Package -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-pink-100 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-bold">MAKEOVER</span>
+                        <span class="text-4xl">✨</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-3">Total Beauty Makeover</h3>
+                    <p class="text-gray-600 mb-6">Complete transformation from head to toe</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Hair Coloring (₱2,500)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Classic Haircut (₱350)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Party Makeup (₱1,500)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Gel Manicure (₱500)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Regular Price:</span>
+                            <span class="text-gray-400 line-through text-lg">₱4,850</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-800">Package Price:</span>
+                            <span class="text-3xl font-bold text-pink-600">₱3,799</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-semibold text-right mt-1">Save ₱1,051!</p>
+                    </div>
+                    
+                    <button onclick="showPage('reservation')" class="w-full gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">Book Package</button>
+                </div>
+
+                <!-- Bridal Beauty Package -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-pink-100 card-hover relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-yellow-400 text-gray-900 px-4 py-1 rounded-bl-xl font-bold text-sm">BEST VALUE</div>
+                    <div class="flex justify-between items-start mb-4 mt-6">
+                        <span class="bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-bold">WEDDING</span>
+                        <span class="text-4xl">👰</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-3">Bridal Beauty</h3>
+                    <p class="text-gray-600 mb-6">Look stunning on your special day</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Bridal Makeup (₱5,000)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Balayage Highlights (₱3,500)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Anti-Aging Facial (₱1,500)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Gel Manicure (₱500)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Gel Pedicure (₱650)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Regular Price:</span>
+                            <span class="text-gray-400 line-through text-lg">₱11,150</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-800">Package Price:</span>
+                            <span class="text-3xl font-bold text-pink-600">₱8,499</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-semibold text-right mt-1">Save ₱2,651!</p>
+                    </div>
+                    
+                    <button onclick="showPage('reservation')" class="w-full gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">Book Package</button>
+                </div>
+
+                <!-- Hair Care Deluxe Package -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-pink-100 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-bold">HAIR CARE</span>
+                        <span class="text-4xl">💇‍♀️</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-3">Hair Care Deluxe</h3>
+                    <p class="text-gray-600 mb-6">Premium hair treatments for healthy, beautiful hair</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Keratin Treatment (₱5,000)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Classic Haircut (₱350)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Hair Spa Treatment (₱800)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Regular Price:</span>
+                            <span class="text-gray-400 line-through text-lg">₱6,150</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-800">Package Price:</span>
+                            <span class="text-3xl font-bold text-pink-600">₱4,999</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-semibold text-right mt-1">Save ₱1,151!</p>
+                    </div>
+                    
+                    <button onclick="showPage('reservation')" class="w-full gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">Book Package</button>
+                </div>
+
+                <!-- Pamper Me Package -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-pink-100 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-bold">SELF-CARE</span>
+                        <span class="text-4xl">💆</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-3">Pamper Me</h3>
+                    <p class="text-gray-600 mb-6">Treat yourself to ultimate relaxation</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Aromatherapy Massage (₱1,500)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Brightening Facial (₱1,200)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Classic Manicure (₱300)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Classic Pedicure (₱400)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Regular Price:</span>
+                            <span class="text-gray-400 line-through text-lg">₱3,400</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-800">Package Price:</span>
+                            <span class="text-3xl font-bold text-pink-600">₱2,699</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-semibold text-right mt-1">Save ₱701!</p>
+                    </div>
+                    
+                    <button onclick="showPage('reservation')" class="w-full gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">Book Package</button>
+                </div>
+
+                <!-- Smooth & Silky Package -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-pink-100 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded-full text-sm font-bold">HAIR LUXURY</span>
+                        <span class="text-4xl">🌊</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-3">Smooth & Silky</h3>
+                    <p class="text-gray-600 mb-6">Get sleek, frizz-free hair that lasts</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Brazilian Blowout (₱4,500)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Classic Haircut (₱350)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Hair Spa Treatment (₱800)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Regular Price:</span>
+                            <span class="text-gray-400 line-through text-lg">₱5,650</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-800">Package Price:</span>
+                            <span class="text-3xl font-bold text-pink-600">₱4,499</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-semibold text-right mt-1">Save ₱1,151!</p>
+                    </div>
+                    
+                    <button onclick="showPage('reservation')" class="w-full gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">Book Package</button>
+                </div>
+
+                <!-- Monthly Maintenance Package -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-pink-100 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-bold">MONTHLY</span>
+                        <span class="text-4xl">📅</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-3">Monthly Maintenance</h3>
+                    <p class="text-gray-600 mb-6">Stay fresh and groomed all month</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Classic Haircut (₱350)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Classic Facial (₱800)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Classic Manicure (₱300)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Eyebrow Shaping (₱150)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Regular Price:</span>
+                            <span class="text-gray-400 line-through text-lg">₱1,600</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-800">Package Price:</span>
+                            <span class="text-3xl font-bold text-pink-600">₱1,299</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-semibold text-right mt-1">Save ₱301!</p>
+                    </div>
+                    
+                    <button onclick="showPage('reservation')" class="w-full gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">Book Package</button>
+                </div>
+
+                <!-- Glow & Polish Package -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-pink-100 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-bold">SKINCARE</span>
+                        <span class="text-4xl">✨</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-3">Glow & Polish</h3>
+                    <p class="text-gray-600 mb-6">Radiant skin and polished nails</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Brightening Facial (₱1,200)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Gel Manicure (₱500)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Gel Pedicure (₱650)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Nail Art Design (₱200)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Regular Price:</span>
+                            <span class="text-gray-400 line-through text-lg">₱2,550</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-800">Package Price:</span>
+                            <span class="text-3xl font-bold text-pink-600">₱1,999</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-semibold text-right mt-1">Save ₱551!</p>
+                    </div>
+                    
+                    <button onclick="showPage('reservation')" class="w-full gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">Book Package</button>
+                </div>
+
+                <!-- Hair Glow Package -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-pink-100 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-bold">POPULAR</span>
+                        <span class="text-4xl">🎨</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-3">Hair Glow</h3>
+                    <p class="text-gray-600 mb-6">Beautiful color and healthy hair</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Balayage Highlights (₱3,500)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Classic Haircut (₱350)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Hair Spa Treatment (₱800)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Regular Price:</span>
+                            <span class="text-gray-400 line-through text-lg">₱4,650</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-800">Package Price:</span>
+                            <span class="text-3xl font-bold text-pink-600">₱3,699</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-semibold text-right mt-1">Save ₱951!</p>
+                    </div>
+                    
+                    <button onclick="showPage('reservation')" class="w-full gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">Book Package</button>
+                </div>
+
+                <!-- Smooth Beauty Package -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border-2 border-pink-100 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-bold">GROOMING</span>
+                        <span class="text-4xl">🪶</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-3">Smooth Beauty</h3>
+                    <p class="text-gray-600 mb-6">Complete waxing and grooming</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Full Leg Waxing (₱800)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Eyebrow Shaping (₱150)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">✓</span>
+                            <span class="text-gray-700">Upper Lip Waxing (₱100)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-pink-500 mr-2 mt-1">
+                      <!-- Complete the Smooth Beauty Package and add closing sections -->
+                            <span class="text-gray-700">Classic Manicure (₱300)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Regular Price:</span>
+                            <span class="text-gray-400 line-through text-lg">₱1,350</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-800">Package Price:</span>
+                            <span class="text-3xl font-bold text-pink-600">₱1,099</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-semibold text-right mt-1">Save ₱251!</p>
+                    </div>
+                    
+                    <button onclick="showPage('reservation')" class="w-full gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">Book Package</button>
+                </div>
+            </div>
+
+            <!-- Package Benefits Section -->
+            <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-3xl shadow-xl p-8 md:p-12 mb-16">
+                <h3 class="text-3xl font-bold text-gray-800 heading-font text-center mb-8">Why Choose Our Packages?</h3>
+                
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">💰</div>
+                        <h4 class="font-bold text-gray-800 mb-2">Save Money</h4>
+                        <p class="text-gray-600 text-sm">Get more value with our bundled services at discounted rates</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">⏰</div>
+                        <h4 class="font-bold text-gray-800 mb-2">Save Time</h4>
+                        <p class="text-gray-600 text-sm">Book multiple services in one convenient appointment</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">🎁</div>
+                        <h4 class="font-bold text-gray-800 mb-2">Extra Perks</h4>
+                        <p class="text-gray-600 text-sm">Enjoy complimentary add-ons and special treats</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">⭐</div>
+                        <h4 class="font-bold text-gray-800 mb-2">Premium Experience</h4>
+                        <p class="text-gray-600 text-sm">Get the full salon experience with curated services</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Package CTA -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 text-center border-2 border-pink-200">
+                <div class="text-6xl mb-4">🎨</div>
+                <h3 class="text-3xl font-bold text-gray-800 heading-font mb-4">Need a Custom Package?</h3>
+                <p class="text-gray-600 text-lg mb-6 max-w-2xl mx-auto">Don't see what you're looking for? We can create a personalized package tailored to your specific needs and preferences!</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                  
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+    <!-- RESERVATION PAGE -->
+    <div id="reservation" class="page-section">
+        <section class="py-20 bg-white" style="margin-top: 80px; min-height: 100vh;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 heading-font mb-3">BOOK AN APPOINTMENT</h2>
+                    <div class="w-24 h-1 bg-pink-500 mx-auto"></div>
+                </div>
+                
+                <div class="max-w-2xl mx-auto">
+                    <!-- Booking Form -->
+                    <div id="bookingFormContainer" class="bg-white rounded-3xl shadow-2xl p-8 border-2 border-pink-200">
+                        <form id="appointmentForm" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                                    <input type="text" name="customer_name" id="customerName" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-500 focus:outline-none transition-all" placeholder="Enter your name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                                    <input type="tel" name="phone" id="customerPhone" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-500 focus:outline-none transition-all" placeholder="09100000000">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                                <input type="email" name="email" id="customerEmail" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-500 focus:outline-none transition-all" placeholder="your@email.com">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Select Service *</label>
+                                <select name="service" id="serviceSelect" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-500 focus:outline-none transition-all">
+                                    <option value="">Choose a service...</option>
+                                    <optgroup label="Hair Services">
+                                        <option value="1">Classic Haircut - ₱350</option>
+                                        <option value="2">Hair Coloring - ₱2,500</option>
+                                        <option value="3">Balayage Highlights - ₱3,500</option>
+                                    </optgroup>
+                                    <optgroup label="Nail Services">
+                                        <option value="4">Classic Manicure - ₱300</option>
+                                        <option value="5">Gel Manicure - ₱500</option>
+                                    </optgroup>
+                                    <optgroup label="Facial Services">
+                                        <option value="6">Classic Facial - ₱800</option>
+                                        <option value="7">Anti-Aging Facial - ₱1,500</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Preferred Date *</label>
+                                    <input type="date" name="appointment_date" id="appointmentDate" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-500 focus:outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Preferred Time *</label>
+                                    <input type="time" name="appointment_time" id="appointmentTime" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-500 focus:outline-none transition-all">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Special Requests (Optional)</label>
+                                <textarea name="notes" id="additionalNotes" rows="3" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-500 focus:outline-none transition-all" placeholder="Any special requests or notes..."></textarea>
+                            </div>
+                            
+                            <button type="submit" id="submitBtn" class="w-full gradient-bg text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-xl transition-all">
+                                ✨ Book Appointment
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="hidden mt-8 bg-green-50 border-2 border-green-500 rounded-3xl p-8 text-center">
+                        <div class="text-6xl mb-4">✓</div>
+                        <h3 class="text-2xl font-bold text-green-700 mb-2">Booking Successful!</h3>
+                        <p class="text-gray-600 mb-6">Your appointment has been confirmed. We'll contact you shortly.</p>
+                        <button onclick="resetForm()" class="gradient-bg text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                            Book Another Appointment
+                        </button>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="errorMessage" class="hidden mt-8 bg-red-50 border-2 border-red-500 rounded-3xl p-8 text-center">
+                        <div class="text-6xl mb-4">⚠️</div>
+                        <h3 class="text-2xl font-bold text-red-700 mb-2">Booking Failed</h3>
+                        <p class="text-gray-600 mb-6" id="errorText">There was an error processing your booking.</p>
+                        <button onclick="hideError()" class="gradient-bg text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                            Try Again
+                        </button>
+                    </div>
+                </div>
+
+                <!-- APPOINTMENTS LIST SECTION -->
+                <div id="appointmentsList" class="max-w-6xl mx-auto mt-16 hidden">
+                    <div class="text-center mb-8">
+                        <h3 class="text-3xl font-bold text-gray-800 heading-font mb-3">📅 Your Appointments</h3>
+                        <div class="w-24 h-1 bg-pink-500 mx-auto"></div>
+                    </div>
+                    
+                    <div id="appointmentsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Appointments will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            
+        </section>
+    </div>
+
+    <script>
+        // Store appointments in memory
+        let appointments = [];
+
+        // Service names mapping
+        const serviceNames = {
+            '1': 'Classic Haircut',
+            '2': 'Hair Coloring',
+            '3': 'Balayage Highlights',
+            '4': 'Classic Manicure',
+            '5': 'Gel Manicure',
+            '6': 'Classic Facial',
+            '7': 'Anti-Aging Facial'
+        };
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function handleLogout() {
+            window.location.href = '/logout/';
+        }
+
+        function resetForm() {
+            const form = document.getElementById('appointmentForm');
+            form.reset();
+            document.getElementById('bookingFormContainer').classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '✨ Book Appointment';
+            submitBtn.disabled = false;
+            
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').classList.add('hidden');
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        }
+
+        function formatTime(timeString) {
+            const [hours, minutes] = timeString.split(':');
+            const hour = parseInt(hours);
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            const displayHour = hour % 12 || 12;
+            return displayHour + ':' + minutes + ' ' + ampm;
+        }
+
+        function displayAppointments() {
+            const appointmentsList = document.getElementById('appointmentsList');
+            const appointmentsGrid = document.getElementById('appointmentsGrid');
+            
+            if (appointments.length === 0) {
+                appointmentsList.classList.add('hidden');
+                return;
+            }
+            
+            appointmentsList.classList.remove('hidden');
+            
+            appointmentsGrid.innerHTML = appointments.map((apt, index) => `
+                <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-pink-100 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm font-semibold">
+                            ${apt.status || 'Pending'}
+                        </div>
+                        <div class="text-2xl">✨</div>
+                    </div>
+                    
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">${apt.service_name}</h4>
+                    
+                    <div class="space-y-2 text-gray-600 mb-4">
+                        <p class="flex items-center">
+                            <span class="mr-2">📅</span>
+                            <strong>Date:</strong>&nbsp;${formatDate(apt.date)}
+                        </p>
+                        <p class="flex items-center">
+                            <span class="mr-2">🕐</span>
+                            <strong>Time:</strong>&nbsp;${formatTime(apt.time)}
+                        </p>
+                        <p class="flex items-center">
+                            <span class="mr-2">👤</span>
+                            <strong>Name:</strong>&nbsp;${apt.customer_name}
+                        </p>
+                        ${apt.notes ? `
+                        <p class="flex items-start">
+                            <span class="mr-2">📝</span>
+                            <span><strong>Notes:</strong> ${apt.notes}</span>
+                        </p>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        <button onclick="editAppointment(${index})" class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-all">
+                            ✏️ Edit
+                        </button>
+                        <button onclick="deleteAppointment(${index})" class="flex-1 bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition-all">
+                            🗑️ Delete
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Scroll to appointments list
+            setTimeout(() => {
+                appointmentsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        }
+
+        function editAppointment(index) {
+            const apt = appointments[index];
+            
+            // Fill form with appointment data
+            document.getElementById('customerName').value = apt.customer_name;
+            document.getElementById('customerPhone').value = apt.customer_phone;
+            document.getElementById('customerEmail').value = apt.customer_email;
+            document.getElementById('serviceSelect').value = apt.service_id;
+            document.getElementById('appointmentDate').value = apt.date;
+            document.getElementById('appointmentTime').value = apt.time;
+            document.getElementById('additionalNotes').value = apt.notes || '';
+            
+            // Remove the old appointment
+            appointments.splice(index, 1);
+            displayAppointments();
+            
+            // Show form and scroll to it
+            document.getElementById('bookingFormContainer').classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('bookingFormContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function deleteAppointment(index) {
+            if (confirm('Are you sure you want to delete this appointment?')) {
+                appointments.splice(index, 1);
+                displayAppointments();
+            }
+        }
+
+        // Main form submission handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('appointmentForm');
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('appointmentDate').setAttribute('min', today);
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(form);
+                    const serviceId = document.getElementById('serviceSelect').value;
+                    
+                    if (!serviceId) {
+                        alert('⚠️ Please select a service');
+                        return;
+                    }
+                    
+                    const bookingData = {
+                        service_id: serviceId,
+                        date: formData.get('appointment_date'),
+                        time: formData.get('appointment_time'),
+                        customer_name: formData.get('customer_name'),
+                        customer_email: formData.get('email'),
+                        customer_phone: formData.get('phone'),
+                        notes: formData.get('notes') || ''
+                    };
+                    
+                    const csrftoken = getCookie('csrftoken');
+                    const submitBtn = document.getElementById('submitBtn');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '⏳ Processing...';
+                    submitBtn.disabled = true;
+                fetch('/api/book/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrftoken
+    },
+    body: JSON.stringify(bookingData)
+})
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(data => {
+                                throw new Error(data.error || 'HTTP error! status: ' + response.status);
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            // Add to appointments list
+                            appointments.push({
+                                ...bookingData,
+                                service_name: serviceNames[serviceId],
+                                status: 'Pending',
+                                id: data.appointment_id
+                            });
+                            
+                            // Hide form
+                            document.getElementById('bookingFormContainer').classList.add('hidden');
+                            
+                            // Show success message
+                            document.getElementById('successMessage').classList.remove('hidden');
+                            document.getElementById('errorMessage').classList.add('hidden');
+                            
+                            // Display appointments list
+                            displayAppointments();
+                            
+                            // Reset form
+                            form.reset();
+                            
+                            // Scroll to success
+                            document.getElementById('successMessage').scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'center' 
+                            });
+                        } else {
+                            throw new Error(data.error || 'Booking failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Booking error:', error);
+                        document.getElementById('errorText').textContent = error.message;
+                        document.getElementById('errorMessage').classList.remove('hidden');
+                        document.getElementById('successMessage').classList.add('hidden');
+                        document.getElementById('errorMessage').scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    })
+                    .finally(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

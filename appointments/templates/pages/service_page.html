@@ -1,0 +1,196 @@
+<!-- appointments/templates/pages/services_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Salon Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7fafc;
+            color: #2d3748;
+        }
+        
+        /* Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        /* Category Filter */
+        .filter-section {
+            background: white;
+            padding: 30px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .filter-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: #4a5568;
+        }
+        
+        .filter-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+        
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .no-services {
+            text-align: center;
+            padding: 80px 20px;
+            color: #718096;
+            font-size: 18px;
+        }
+        
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 32px;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+            }
+            
+            .filter-btn {
+                text-align: center;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="page-header">
+        <h1>Our Services</h1>
+        <p>Professional beauty and wellness services</p>
+    </header>
+    
+    <!-- Category Filter -->
+    <section class="filter-section">
+        <div class="filter-container">
+            <h3 class="filter-title">Filter by Category:</h3>
+            <div class="filter-buttons">
+                <a href="{% url 'services_page' %}" class="filter-btn {% if not selected_category %}active{% endif %}">
+                    All Services
+                </a>
+                {% for code, name in categories %}
+                    <a href="?category={{ code }}" class="filter-btn {% if selected_category == code %}active{% endif %}">
+                        {{ name }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <a href="{% url 'client_homepage' %}" class="back-link">← Back to Home</a>
+        
+        {% if services %}
+            <div class="services-grid">
+                {% for service in services %}
+                    {% include 'molecules/service_card.html' with service=service %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-services">
+                <p>No services found in this category.</p>
+            </div>
+        {% endif %}
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Salon Booking System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

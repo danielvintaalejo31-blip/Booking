@@ -1,0 +1,90 @@
+<!-- Add this to your navigation menu in base.html or wherever your navbar is -->
+
+<!-- For logged-in users -->
+{% if user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'appointments:my_appointments' %}">
+            <i class="fas fa-calendar-check"></i> My Appointments
+        </a>
+    </li>
+{% else %}
+    <!-- For guest users who have made bookings -->
+    {% if request.session.guest_appointments %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'appointments:guest_appointments' %}">
+                <i class="fas fa-calendar-check"></i> My Appointments
+            </a>
+        </li>
+    {% endif %}
+{% endif %}
+
+<!-- 
+EXAMPLE FULL NAVBAR:
+If your navbar looks like this, add the snippet above before the logout/login links:
+-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'appointments:home' %}">
+            <i class="fas fa-spa"></i> Natural Beauty Salon
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'appointments:home' %}">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">ABOUT US</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'appointments:services' %}">SERVICES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'appointments:packages' %}">PACKAGES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#reservation">RESERVATION</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">CONTACT US</a>
+                </li>
+                
+                <!-- ADD THIS SECTION -->
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'appointments:my_appointments' %}">
+                            <i class="fas fa-calendar-check"></i> MY APPOINTMENTS
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle"></i> {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'appointments:dashboard' %}">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{% url 'appointments:my_appointments' %}">My Appointments</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'appointments:logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    {% if request.session.guest_appointments %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'appointments:guest_appointments' %}">
+                                <i class="fas fa-calendar-check"></i> MY APPOINTMENTS
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'appointments:login' %}">
+                            <i class="fas fa-sign-in-alt"></i> LOGIN
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,100 @@
+<!-- appointments/templates/organisms/services_grid.html -->
+<!-- Grid layout for displaying multiple services -->
+
+<section class="services-section">
+    <div class="section-header">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Discover our range of professional beauty services</p>
+    </div>
+    
+    {% if services_by_category %}
+        {% for category, service_list in services_by_category.items %}
+            <div class="category-section">
+                <h3 class="category-title">{{ category }}</h3>
+                
+                <div class="services-grid">
+                    {% for service in service_list %}
+                        {% include 'molecules/service_card.html' with service=service %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-services">
+            <p>No services available at the moment. Please check back later!</p>
+        </div>
+    {% endif %}
+</section>
+
+<style>
+.services-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 42px;
+    font-weight: 800;
+    color: #2d3748;
+    margin: 0 0 12px 0;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: #718096;
+    margin: 0;
+}
+
+.category-section {
+    margin-bottom: 60px;
+}
+
+.category-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 0 0 30px 0;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #667eea;
+    display: inline-block;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.no-services {
+    text-align: center;
+    padding: 60px 20px;
+    color: #718096;
+    font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .services-section {
+        padding: 40px 15px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .category-title {
+        font-size: 24px;
+    }
+}
+</style>

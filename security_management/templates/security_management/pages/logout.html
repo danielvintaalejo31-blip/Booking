@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout Confirmation</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff1f6;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: white;
+            width: 420px;
+            padding: 35px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            color: #c2185b;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            padding: 10px 30px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-yes {
+            background: #c2185b;
+            color: white;
+        }
+
+        .btn-yes:hover {
+            background: #a0154a;
+        }
+
+        .btn-no {
+            background: white;
+            color: #c2185b;
+            border: 2px solid #c2185b;
+        }
+
+        .btn-no:hover {
+            background: #fff0f5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>Confirm Logout</h2>
+        <p>Are you sure you want to log out?</p>
+
+        <div class="actions">
+            <!-- NO -->
+            <button class="btn-no" onclick="goBack()">No</button>
+
+            <!-- YES (POST + CSRF, DIRECT URL) -->
+            <form method="POST" action="/logout/">
+                {% csrf_token %}
+                <button type="submit" class="btn-yes">Yes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

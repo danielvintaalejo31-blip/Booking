@@ -1,0 +1,7 @@
+<div class="card">
+    <h4>{{ appointment.client_name }}</h4>
+    <p><strong>Service:</strong> {{ appointment.service }}</p>
+    <p><strong>Date:</strong> {{ appointment.date }} - {{ appointment.time }}</p>
+    <a href="{% url 'appointment_update' appointment.id %}">Edit</a> |
+    <a href="{% url 'appointment_delete' appointment.id %}">Delete</a>
+</div>

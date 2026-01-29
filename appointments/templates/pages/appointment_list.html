@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointments</title>
+</head>
+<body>
+    <h1>Appointments</h1>
+    <a href="{% url 'appointment_create' %}">+ Add Appointment</a>
+    <hr>
+
+    {% for appointment in appointments %}
+        {% include 'molecules/appointment_card.html' %}
+    {% empty %}
+        <p>No appointments yet.</p>
+    {% endfor %}
+</body>
+</html>

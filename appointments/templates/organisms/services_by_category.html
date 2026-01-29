@@ -1,0 +1,217 @@
+<!-- appointments/templates/organisms/services_by_category.html -->
+<section class="services-section">
+    <div class="section-header">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Choose from our wide range of professional services</p>
+    </div>
+    
+    {% if services %}
+        {% regroup services by category as services_by_category %}
+        
+        {% for category_group in services_by_category %}
+        <div class="category-section">
+            <h3 class="category-title">{{ category_group.grouper }}</h3>
+            
+            <div class="services-grid">
+                {% for service in category_group.list %}
+                <div class="service-card">
+                    <h4 class="service-name">{{ service.name }}</h4>
+                    <p class="service-description">{{ service.description }}</p>
+                    
+                    <div class="service-info">
+                        <div class="service-price">
+                            <span class="currency">₱</span>
+                            <span class="amount">{{ service.price|floatformat:2 }}</span>
+                        </div>
+                        
+                        <div class="service-duration">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>{{ service.duration }} mins</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-book-service" onclick="bookService({ service_id })">
+                        Book Now
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-services">
+            <p>No services available at the moment. Please check back later!</p>
+        </div>
+    {% endif %}
+</section>
+
+<style>
+.services-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 42px;
+    font-weight: 800;
+    color: #2d3748;
+    margin: 0 0 12px 0;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: #718096;
+    margin: 0;
+}
+
+.category-section {
+    margin-bottom: 60px;
+}
+
+.category-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 0 0 30px 0;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #667eea;
+    display: inline-block;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+    border-color: #667eea;
+}
+
+.service-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 0 0 12px 0;
+}
+
+.service-description {
+    color: #4a5568;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    min-height: 60px;
+}
+
+.service-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f7fafc;
+    border-radius: 8px;
+}
+
+.service-price {
+    display: flex;
+    align-items: baseline;
+    color: #48bb78;
+}
+
+.service-price .currency {
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 2px;
+}
+
+.service-price .amount {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.service-duration {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #718096;
+    font-size: 14px;
+}
+
+.service-duration .icon {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-book-service {
+    width: 100%;
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-book-service:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.no-services {
+    text-align: center;
+    padding: 60px 20px;
+    color: #718096;
+    font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .services-section {
+        padding: 40px 15px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+    
+    .category-title {
+        font-size: 24px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+</style>
+
+<script>
+function bookService(serviceId) {
+    // Redirect to booking page with service selected
+    window.location.href = `/appointments/book/?service=${serviceId}`;
+}
+</script>

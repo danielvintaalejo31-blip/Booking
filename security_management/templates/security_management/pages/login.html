@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salon Login</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #ffffff; /* white background */
+    color: #000000; /* black text */
+}
+
+.login-container {
+    background: #ffffff;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    max-width: 420px;
+    border: 2px solid #000000; /* black line */
+}
+
+/* TEXT */
+.login-container h1,
+.login-container h2,
+.login-container h3,
+.login-container p,
+.login-container label {
+    color: #000000;
+}
+
+/* INPUT */
+.login-container input {
+    background: #ffffff;
+    border: 1.5px solid #000000;
+    color: #000000;
+}
+
+.login-container input::placeholder {
+    color: #000000;
+}
+
+/* BUTTON */
+.login-container button {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+}
+
+.login-container button:hover {
+    opacity: 0.85;
+}
+
+/* LINKS */
+.login-container a {
+    color: #000000;
+}
+
+        
+        .salon-header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .salon-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #000000;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            text-align: center;
+            color: #000000;
+            font-size: 14px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        form p {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #000000;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Password field wrapper for positioning the eye icon */
+        .password-wrapper {
+            position: relative;
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #000000;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background-color: #ffe6f0;
+        }
+        
+        /* Add padding-right for password field to make room for icon */
+        .password-wrapper input {
+            padding-right: 45px;
+        }
+        
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #000000;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(240, 128, 170, 0.2);
+        }
+        
+        /* Eye icon toggle button */
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #000000;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .toggle-password:hover {
+            color: #000000;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #f7a3c6 0%, #000000 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        button[type="submit"]:hover {
+            background: linear-gradient(135deg, #000000 0%, #000000 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 128, 170, 0.3);
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .register-link a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .decorative-line {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #000000, transparent);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="salon-header">
+            <div class="salon-icon">💇‍♀️</div>
+            <h2>Salon Login</h2>
+            <p class="tagline">Your beauty journey starts here</p>
+        </div>
+        <div class="decorative-line"></div>
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Username field (unchanged) -->
+            <p>
+                <label for="id_username">Username:</label>
+                <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+            </p>
+            
+            <!-- Password field with toggle -->
+            <p>
+                <label for="id_password">Password:</label>
+                <div class="password-wrapper">
+                    <input type="password" name="password" autocomplete="current-password" required id="id_password">
+                    <button type="button" class="toggle-password" onclick="togglePassword()">
+                        <span id="eye-icon">👁️</span>
+                    </button>
+                </div>
+            </p>
+            
+            <button type="submit">Login</button>
+        </form>
+        <p class="register-link">Don't have an account? <a href="{% url 'appointments:register' %}">Register here</a></p>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('id_password');
+            const eyeIcon = document.getElementById('eye-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = '🙈'; // Closed eye emoji
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = '👁️'; // Open eye emoji
+            }
+        }
+    </script>
+</body>
+</html>

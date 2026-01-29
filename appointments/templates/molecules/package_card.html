@@ -1,0 +1,218 @@
+<!-- appointments/templates/molecules/package_card.html -->
+<div class="package-card">
+    <div class="package-badge">Special Offer</div>
+    
+    <div class="package-header">
+        <h3 class="package-name">{{ package.name }}</h3>
+        <div class="package-price">
+            <span class="currency">₱</span>
+            <span class="amount">{{ package.price|floatformat:2 }}</span>
+        </div>
+    </div>
+    
+    <p class="package-description">{{ package.description }}</p>
+    
+    <div class="package-details">
+        <div class="detail-item">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>{{ package.duration }} minutes</span>
+        </div>
+        
+        {% if package.services.all %}
+        <div class="detail-item">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+            </svg>
+            <span>{{ package.services.count }} services included</span>
+        </div>
+        {% endif %}
+    </div>
+    
+    {% if package.services.all %}
+    <div class="included-services">
+        <h4>Includes:</h4>
+        <ul>
+            {% for service in package.services.all %}
+            <li>{{ service.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    <button class="btn-book-package" onclick="bookPackage({ package_id })">
+        Book This Package
+    </button>
+</div>
+
+<style>
+.package-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.package-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+}
+
+.package-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.package-header {
+    margin-bottom: 20px;
+}
+
+.package-name {
+    font-size: 26px;
+    font-weight: 800;
+    color: #2d3748;
+    margin: 0 0 15px 0;
+}
+
+.package-price {
+    display: flex;
+    align-items: baseline;
+    color: #667eea;
+    margin: 15px 0;
+}
+
+.package-price .currency {
+    font-size: 24px;
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+.package-price .amount {
+    font-size: 36px;
+    font-weight: 900;
+}
+
+.package-description {
+    color: #4a5568;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.package-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f7fafc;
+    border-radius: 10px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #4a5568;
+    font-size: 14px;
+}
+
+.detail-item .icon {
+    width: 20px;
+    height: 20px;
+    color: #667eea;
+}
+
+.included-services {
+    margin: 20px 0;
+    padding: 20px;
+    background: #edf2f7;
+    border-radius: 10px;
+}
+
+.included-services h4 {
+    color: #2d3748;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+}
+
+.included-services ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.included-services li {
+    padding: 8px 0;
+    color: #4a5568;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.included-services li:before {
+    content: "✓";
+    color: #48bb78;
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.btn-book-package {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-book-package:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-book-package:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .package-card {
+        padding: 24px;
+    }
+    
+    .package-name {
+        font-size: 22px;
+    }
+    
+    .package-price .amount {
+        font-size: 30px;
+    }
+}
+</style>
+
+<script>
+function bookPackage(packageId) {
+    // Redirect to booking page with package selected
+    window.location.href = `/appointments/book/?package=${packageId}`;
+}
+</script>

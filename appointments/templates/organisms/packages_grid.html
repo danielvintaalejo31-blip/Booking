@@ -1,0 +1,112 @@
+<!-- appointments/templates/organisms/packages_grid.html -->
+<!-- Grid layout for displaying service packages -->
+
+<section class="packages-section">
+    <div class="section-header">
+        <h2 class="section-title">Special Packages</h2>
+        <p class="section-subtitle">Save more with our exclusive package deals</p>
+    </div>
+    
+    {% if packages %}
+        <div class="packages-grid">
+            {% for package in packages %}
+                {% include 'molecules/package_card.html' with package=package %}
+            {% endfor %}
+        </div>
+        
+        {% if packages|length >= 3 %}
+            <div class="view-all-container">
+                <a href="{% url 'packages_page' %}" class="btn-view-all">
+                    View All Packages →
+                </a>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="no-packages">
+            <p>No packages available at the moment. Check out our individual services!</p>
+        </div>
+    {% endif %}
+</section>
+
+<style>
+.packages-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    border-radius: 20px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 42px;
+    font-weight: 800;
+    color: #2d3748;
+    margin: 0 0 12px 0;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: #718096;
+    margin: 0;
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.view-all-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-view-all {
+    display: inline-block;
+    background: white;
+    color: #667eea;
+    padding: 14px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    border: 2px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.btn-view-all:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.no-packages {
+    text-align: center;
+    padding: 60px 20px;
+    color: #718096;
+    font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .packages-section {
+        padding: 40px 15px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+    
+    .packages-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+</style>

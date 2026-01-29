@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="landing-page">
+    <section class="hero">
+        <h1>Welcome to Our Salon</h1>
+        <p>Book your appointment today!</p>
+        <div class="cta-buttons">
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+        </div>
+    </section>
+
+    <section class="featured-services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card">
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.description|truncatewords:20 }}</p>
+                <p class="price">${{ service.price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'login' %}" class="btn">Login to Book</a>
+    </section>
+
+    <section class="packages">
+        <h2>Special Packages</h2>
+        <div class="packages-grid">
+            {% for package in packages %}
+            <div class="package-card">
+                <h3>{{ package.name }}</h3>
+                <p>{{ package.description|truncatewords:15 }}</p>
+                <p class="price">${{ package.total_price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}
